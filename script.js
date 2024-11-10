@@ -64,6 +64,24 @@ const resetHandler = () => {
 	scoreElement.textContent = score;
 };
 
+let inputValue = "";
+
+const restrictValue = () => {
+	const guessElement = document.querySelector(".guess");
+	const guessNumber = +guessElement.value;
+
+	if (guessNumber >= 1 && guessNumber <= 20) {
+		guessElement.value = guessNumber;
+		inputValue = guessNumber;
+	} else if (guessNumber === 0) {
+		guessElement.value = "";
+		inputValue = "";
+	} else {
+		guessElement.value = inputValue;
+	}
+};
+
+document.querySelector(".guess").addEventListener("input", restrictValue);
 document.querySelector(".check").addEventListener("click", checkGuess);
 document.querySelector(".again").addEventListener("click", resetHandler);
 
